@@ -1,0 +1,79 @@
+<div class="container">
+    <h1>Bienvenido a la Aplicación de Prueba Técnica</h1>
+  
+    <h2>Objetivos del Proyecto</h2>
+    <p>
+      El objetivo principal de esta prueba técnica fue crear una aplicación web sencilla utilizando Angular que consuma datos de una API pública y los presente de manera clara y funcional. Este proyecto tiene como propósito demostrar mi capacidad para trabajar con Angular, manejar peticiones HTTP y diseñar una interfaz de usuario moderna y amigable.
+    </p>
+  
+    <h2>¿Qué hice?</h2>
+    <ul>
+      <li>
+        <h3>Elección de la API Pública:</h3>
+        <p>
+          Eligi la API de Rick and Morty, una API pública que proporciona información detallada sobre personajes, episodios y ubicaciones de la serie. <br>
+          Esta API fue elegida debido a la riqueza de datos y la popularidad del contenido. 
+          Tambien por los tiempos de respuesta de la misma y la nula autenticacion para realizar peticiones.  
+        </p>
+      </li>
+      <li>
+        <h3>Componentes Creados:</h3>
+        <ul>
+          <li>
+            <strong>Modulo Pages:</strong> Administra la navegación y la estructura general de la aplicación. Contiene los principales componentes de la app.
+          </li>
+          
+          <li>
+            <strong>Modulo de Shared:</strong> Dentro de esta seccion de la aplicacion se encuentran componentes que pueden ser usados dentro de toda la app. <br>
+            Ejemplos del mismo son los botones con animaciones personalizadas, una tabla dinamica para visualizar la informacion, el componente Dialog <br> 
+            para visualizar la informacion detallada de los componentes, las vistas para los errores y los loaders.
+          </li>
+          <li>
+            <strong>Vista de Table-View:</strong> Muestra una lista de personajes con información relevante como nombre, especie y estado en formato de tabla teniendo <br>
+            3 filtros disponibles para poder visualizar la informacion.
+          </li>
+
+          <li>
+            <strong>Vista de Cards-View:</strong> Muestra una lista de personajes con información relevante como nombre, especie y estado en formato de Cards teniendo <br>
+            3 filtros disponibles para poder visualizar la informacion.
+          </li>
+          
+        </ul>
+      </li>
+      <li>
+        <h3>Consumo de la API:</h3>
+        <p>
+          Se utilizó el servicio <code>HttpClient</code> de Angular para realizar llamadas HTTP a la API de Rick and Morty, obteniendo datos en formato JSON. 
+        </p>
+      </li>
+      <li>
+        <h3>Interactividad del Usuario:</h3>
+        <ul>
+          <li>
+            <strong>Búsqueda:</strong> Los usuarios pueden buscar personajes específicos mediante un campo de entrada, filtrando los resultados en tiempo real.
+          </li>
+          <li>
+            <strong>Filtrado:</strong> La aplicación permite filtrar personajes por estado (vivo, muerto, desconocido) y especie, proporcionando una experiencia de usuario dinámica y personalizada.
+          </li>
+          <li>
+            <strong>Selección:</strong> Al hacer clic en un personaje, se muestra un diálogo con información detallada del mismo.
+          </li>
+        </ul>
+      </li>
+      <li>
+        <h3>Diseño con Angular Material:</h3>
+        <p>
+          Se utilizó Angular Material para darle un aspecto moderno y limpio a la aplicación, con componentes como botones, diálogos, tarjetas, y formularios, asegurando una interfaz consistente y atractiva. <br> La aplicación está diseñada para ser completamente responsive, garantizando una experiencia de usuario óptima tanto en dispositivos móviles como en pantallas de escritorio.
+        </p>
+      </li>
+      <li>
+        <h3>Validación y Manejo de Errores:</h3>
+        <p>
+          Se implementó una validación básica para el campo de búsqueda, asegurando que las entradas sean manejadas de manera adecuada. Se manejan errores de la API, como la falta de conexión o respuestas no válidas, mostrando mensajes de error claros y concisos para mejorar la experiencia del usuario.
+        </p>
+      </li>
+      <h3>Los invito a validar los objetivos de la Aplicacion. </h3>
+      <app-empecemos-button></app-empecemos-button>
+    </ul>
+  </div>
+  

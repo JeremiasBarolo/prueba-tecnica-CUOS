@@ -1,0 +1,70 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    overflow: hidden; 
+  }
+  
+  .container {
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 10em); 
+    padding: 16px;
+    box-sizing: border-box;
+    margin-top: 3em;
+    overflow: hidden; 
+  }
+  
+  
+  
+  .cards-wrapper {
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: center;
+    overflow: auto;
+  }
+  
+  .card {
+    flex: 1 1 calc(25% - 16px);
+    box-sizing: border-box;
+    min-width: 200px;
+    max-width: 300px; 
+    max-height: 200px; 
+    background-color: #202329;
+    color: white;
+    overflow: auto;
+  }
+
+  .card:hover{
+    cursor: pointer;
+  }
+  
+  mat-card-subtitle {
+    color: white;
+  }
+  
+  .filter-container {
+    display: flex;
+    gap: 16px;
+    margin-top: 5em;
+  }
+  
+  .description-container {
+    margin-top: 1em;
+  }
+  
+  mat-card-content {
+    flex: 1;
+  }
+  
+  mat-paginator {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: #2c9caf;
+    color: white;
+    z-index: 1;
+  }
+  

@@ -23,11 +23,11 @@
   </button>
   
   <mat-menu #personajes="matMenu" class="custom-mat-menu select-option">
-    <button mat-menu-item class="select-option" (click)="navigateTo('inicio/table-view')">
+    <button mat-menu-item class="select-option" (click)="navigateTo('app/table-view')">
       <mat-icon>list</mat-icon>
       <span>Mostrar en Tabla</span>
     </button>
-    <button mat-menu-item class="select-option" (click)="navigateTo('inicio/cards-view')">
+    <button mat-menu-item class="select-option" (click)="navigateTo('app/cards-view')">
       <mat-icon>image</mat-icon>
       <span>Mostrar en Formato Card</span>
     </button>
@@ -36,7 +36,7 @@
    
     <mat-divider></mat-divider>
 
-    <button type="button" mat-button  class="full-width-button" (click)="navigateTo('episodes')">
+    <button type="button" mat-button  class="full-width-button" (click)="navigateTo('app/episodes')">
       <mat-icon aria-label="Episodes icon">tv</mat-icon>
       <span>Capítulos</span>
     </button>

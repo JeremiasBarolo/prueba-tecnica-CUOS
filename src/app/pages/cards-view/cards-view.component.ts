@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Subject, takeUntil } from 'rxjs';
 import { PersonajesService } from 'src/app/services/personajes.service';
 
 @Component({
@@ -12,13 +13,14 @@ export class CardsViewComponent {
   personajesService: any;
   characters: any[] = [];
   response: boolean = true
+  private destroy$ = new Subject<void>();
 
 
   constructor(private marvelService: PersonajesService) {}
 
 
     ngOnInit(): void {
-    this.marvelService.getAllCharacters().subscribe((response: any[]) => {
+    this.marvelService.getAllCharacters().pipe(takeUntil(this.destroy$)).subscribe((response: any[]) => {
         this.characters = response;
         this.isLoading = false;
       },
@@ -32,6 +34,11 @@ export class CardsViewComponent {
 
   
    }
+
+   ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
 }
 
  

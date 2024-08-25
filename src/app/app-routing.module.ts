@@ -5,7 +5,7 @@ import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.co
 
 const routes: Routes = [
   {
-    path: 'inicio',
+    path: 'app',
     loadChildren: () => import('./pages/pages.module').then(m => m.PagesModule),
     
   },

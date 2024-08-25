@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { catchError, concatMap, forkJoin, map, Observable, of, switchMap } from 'rxjs';
+import { catchError, concatMap, forkJoin, map, mergeMap, Observable, of, switchMap } from 'rxjs';
 
 
 @Injectable({
@@ -9,6 +9,7 @@ import { catchError, concatMap, forkJoin, map, Observable, of, switchMap } from 
 export class PersonajesService {
 
   private baseUrl = 'https://rickandmortyapi.com/api';
+  apiUrl: any;
 
   constructor(private http: HttpClient) {}
 
@@ -20,8 +21,28 @@ export class PersonajesService {
     return this.http.get<any>(`${this.baseUrl}/episode`);
   }
 
-  getEpisode(id: number): Observable<any> {
-    return this.http.get<any>(`${this.baseUrl}/episode/${id}`);
+  getCharacterDetails(urls: string[]): Observable<any[]> {
+    return forkJoin(urls.map(url => this.http.get<any>(url)));
+  }
+
+  getAllEpisodes(): Observable<any[]> {
+    return this.http.get<any>(`${this.baseUrl}/episode`).pipe(
+      mergeMap((initialResponse) => {
+        const episodes = initialResponse.results;
+        const totalPages = initialResponse.info.pages;
+        const pageRequests = [];
+        
+        for (let i = 2; i <= totalPages; i++) {
+          pageRequests.push(this.http.get<any>(`${this.baseUrl}/episode?page=${i}`).pipe(
+            map(response => response.results)
+          ));
+        }
+        
+        return forkJoin([of(episodes), ...pageRequests]).pipe(
+          map(results => results.flat())
+        );
+      })
+    );
   }
 
   getLocations(): Observable<any> {
@@ -58,4 +79,6 @@ export class PersonajesService {
       })
     );
   }
+
+  
 }

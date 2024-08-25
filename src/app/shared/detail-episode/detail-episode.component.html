@@ -1,0 +1,23 @@
+<div class="container">
+    <h1 mat-dialog-title style="color: white;">Detalles del Episodio</h1>
+    <mat-dialog-content>
+      <div class="dialog-content">
+        <div class="dialog-info">
+          <h2>{{data.name}}</h2>
+          <p><strong>Fecha de Emisión:</strong> {{data.air_date}}</p>
+          <p><strong>Episodio:</strong> {{data.episode}}</p>
+          <p><strong>Personajes:</strong></p>
+          <div *ngIf="isLoading">Loading characters...</div>
+          <div *ngIf="!isLoading" class="character-images">
+            <div *ngFor="let character of characters" class="character-image">
+              <img [src]="character.image" [alt]="character.name">
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+      <app-go-back-button (click)="onClose()"> </app-go-back-button>
+    </mat-dialog-actions>
+  </div>
+  

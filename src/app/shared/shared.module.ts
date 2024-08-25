@@ -18,6 +18,9 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { MenuButtonComponent } from './menu-button/menu-button.component';
 import { GoBackButtonComponent } from './go-back-button/go-back-button.component';
+import { EmpecemosButtonComponent } from './empecemos-button/empecemos-button.component';
+import { DetailEpisodeComponent } from './detail-episode/detail-episode.component';
+import { CardEpisodeComponent } from './card-episode/card-episode.component';
 
 
 @NgModule({
@@ -29,7 +32,11 @@ import { GoBackButtonComponent } from './go-back-button/go-back-button.component
     DetailsComponent,
     PageNotFoundComponent,
     MenuButtonComponent,
-    GoBackButtonComponent
+    GoBackButtonComponent,
+    EmpecemosButtonComponent,
+    DetailEpisodeComponent,
+    CardEpisodeComponent,
+
 
   ],
   imports: [
@@ -52,7 +59,11 @@ import { GoBackButtonComponent } from './go-back-button/go-back-button.component
     SpinnerComponent,
     PageNotFoundComponent,
     MenuButtonComponent,
-    GoBackButtonComponent
+    GoBackButtonComponent,
+    EmpecemosButtonComponent,
+    DetailEpisodeComponent,
+    CardEpisodeComponent,
+
   ]
 })
 export class SharedModule { }

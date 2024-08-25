@@ -12,6 +12,6 @@ export class PageNotFoundComponent {
 
 
   navigateToInicio() {
-    this.router.navigate(['inicio']);
+    this.router.navigate(['app/inicio']);
   }
 }
