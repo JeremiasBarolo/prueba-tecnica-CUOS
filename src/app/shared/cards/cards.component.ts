@@ -1,6 +1,8 @@
 // cards.component.ts
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
+import { DetailsComponent } from '../details/details.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-cards',
@@ -12,6 +14,8 @@ export class CardsComponent implements OnChanges, OnInit {
   @Input() dataSources: any[] = [];
   @Input() isLoading: boolean = true;
   @Input() response: boolean = true;
+
+  constructor(public dialog: MatDialog) {}
 
   totalItems: number = 0;
   pageSize: number = 20;
@@ -64,5 +68,11 @@ export class CardsComponent implements OnChanges, OnInit {
     const startIndex = this.currentPage * this.pageSize;
     const endIndex = startIndex + this.pageSize;
     this.paginatedData = this.filteredData.slice(startIndex, endIndex);
+  }
+
+  showData(data: any): void {
+    this.dialog.open(DetailsComponent, {
+      data: data
+    });
   }
 }

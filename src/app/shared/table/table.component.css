@@ -21,6 +21,15 @@
   color: black;
   font-weight: bold;
 }
+.container {
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 10em); 
+  padding: 16px;
+  box-sizing: border-box;
+  margin-top: 3em;
+  overflow-y: scroll;
+}
 
 mat-paginator {
   position: fixed;
@@ -30,8 +39,4 @@ mat-paginator {
   background: linear-gradient(to left, #7ac86a, #47895f);
   color: white;
   z-index: 1;
-}
-
-.filter {
-  margin-bottom: 16px;
 }

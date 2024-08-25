@@ -2,6 +2,8 @@ import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { DetailsComponent } from '../details/details.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-table',
@@ -23,6 +25,8 @@ export class TableComponent implements OnInit {
   pageSize: number = 20;
   currentPage: number = 0;
   paginatedData = new MatTableDataSource<any>([]);
+
+  constructor(public dialog: MatDialog) {}
 
   ngOnInit() {
     this.paginatedData.data = this.dataSource;
@@ -59,5 +63,11 @@ export class TableComponent implements OnInit {
       default:
         return 'status-unknown';
     }
+  }
+
+  showData(data: any): void {
+    this.dialog.open(DetailsComponent, {
+      data: data
+    });
   }
 }

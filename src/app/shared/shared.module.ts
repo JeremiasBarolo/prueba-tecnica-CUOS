@@ -13,13 +13,16 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatSortModule } from '@angular/material/sort';
 import { MatInputModule } from '@angular/material/input';
 import { MatDividerModule } from '@angular/material/divider';
+import { DetailsComponent } from './details/details.component';
+import {MatDialogModule} from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
     TableComponent,
     CardsComponent,
     SpinnerComponent,
-    NoResponseComponent
+    NoResponseComponent,
+    DetailsComponent
   ],
   imports: [
     CommonModule,
@@ -31,7 +34,8 @@ import { MatDividerModule } from '@angular/material/divider';
     MatSelectModule,
     MatSortModule,
     MatInputModule,
-    MatDividerModule
+    MatDividerModule,
+    MatDialogModule
   ],
 
   exports: [
