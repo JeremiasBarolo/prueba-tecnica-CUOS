@@ -1,0 +1,26 @@
+<mat-drawer-container class="container" autosize [hasBackdrop]="isMobile" >
+
+    <mat-drawer #drawer class="sidenav" mode="side"   [mode]="isMobile ? 'over' : 'side'"  [opened]="!isMobile" >
+      <h4>Prueba tecnica CUOS</h4>
+
+      <button type="button" mat-button (click)="drawer.toggle()">
+        <mat-icon  aria-label="Example home icon" fontIcon="menu" ></mat-icon>
+        <h3> Tabla</h3>
+      </button>
+
+      <button type="button" mat-button (click)="drawer.toggle()">
+        <mat-icon  aria-label="Example home icon" fontIcon="menu" ></mat-icon>
+        <h3> Cards</h3>
+      </button>
+    </mat-drawer>
+  
+    <div class="sidenav-content">
+
+      <button type="button" mat-button (click)="drawer.toggle()">
+        <mat-icon  aria-label="Example home icon" fontIcon="menu" ></mat-icon>
+      </button>
+      
+      <router-outlet></router-outlet>
+    </div>
+  
+  </mat-drawer-container>

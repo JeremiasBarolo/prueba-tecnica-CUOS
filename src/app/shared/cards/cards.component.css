@@ -1,0 +1,33 @@
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: center;
+    width: calc(100% - 16px);
+    box-sizing: border-box;
+    padding-bottom: 64px;
+  }
+  
+.card {
+    flex: 1 1 calc(20% - 16px);
+    box-sizing: border-box;
+    min-width: 200px;
+}
+
+.description-container{
+    margin-top: 1em;
+}
+
+mat-card-content {
+    flex: 1; 
+}
+  
+mat-paginator {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: white; 
+    z-index: 1;
+}
+
