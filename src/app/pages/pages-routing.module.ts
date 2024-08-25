@@ -15,6 +15,7 @@ const routes: Routes = [
     path: '', component: PagesComponent,
     children: [
       { path: 'inicio', component: InicioComponent },
+      { path: 'inicio', component: InicioComponent },
       { path: 'cards-view', component: CardsViewComponent },
       { path: 'table-view', component: TableViewComponent },
       { path: 'episodes', component: EpisodesComponent },

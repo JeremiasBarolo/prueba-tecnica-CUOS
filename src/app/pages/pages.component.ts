@@ -23,6 +23,10 @@ export class PagesComponent {
 
   ngOnInit() {
     this.checkScreenSize();
+    if (this.router.url === '/app') {
+      this.router.navigate(['/app/inicio']);
+    }
+
   }
 
   private checkScreenSize() {
