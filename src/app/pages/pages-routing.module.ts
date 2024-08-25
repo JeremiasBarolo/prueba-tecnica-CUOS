@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { InicioComponent } from './inicio/inicio.component';
 import { PagesComponent } from './pages.component';
 import { CardsViewComponent } from './cards-view/cards-view.component';
+import { TableViewComponent } from './table-view/table-view.component';
 
 
 
@@ -13,7 +14,8 @@ const routes: Routes = [
     path: '', component: PagesComponent,
     children: [
       { path: 'inicio', component: InicioComponent },
-      { path: 'cards', component: CardsViewComponent },
+      { path: 'cards-view', component: CardsViewComponent },
+      { path: 'table-view', component: TableViewComponent },
       { path: '**', redirectTo: '' },
     
     ]

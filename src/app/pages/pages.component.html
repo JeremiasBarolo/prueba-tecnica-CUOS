@@ -1,26 +1,60 @@
-<mat-drawer-container class="container" autosize [hasBackdrop]="isMobile" >
+<mat-drawer-container class="container" autosize [hasBackdrop]="isMobile">
 
-    <mat-drawer #drawer class="sidenav" mode="side"   [mode]="isMobile ? 'over' : 'side'"  [opened]="!isMobile" >
-      <h4>Prueba tecnica CUOS</h4>
-
-      <button type="button" mat-button (click)="drawer.toggle()">
-        <mat-icon  aria-label="Example home icon" fontIcon="menu" ></mat-icon>
-        <h3> Tabla</h3>
-      </button>
-
-      <button type="button" mat-button (click)="drawer.toggle()">
-        <mat-icon  aria-label="Example home icon" fontIcon="menu" ></mat-icon>
-        <h3> Cards</h3>
-      </button>
-    </mat-drawer>
-  
-    <div class="sidenav-content">
-
-      <button type="button" mat-button (click)="drawer.toggle()">
-        <mat-icon  aria-label="Example home icon" fontIcon="menu" ></mat-icon>
-      </button>
+  <mat-drawer #drawer class="sidenav" [mode]="isMobile ? 'over' : 'side'" [opened]="!isMobile">
+    <div class="sidenav-header">
+      <img class="header-icon" src="../../assets/img/logo-icon.png" alt="">
       
-      <router-outlet></router-outlet>
-    </div>
-  
-  </mat-drawer-container>
+   </div>
+
+
+   <mat-divider></mat-divider>
+
+    <button type="button" mat-button  class="full-width-button" (click)="navigateTo('inicio')">
+      <mat-icon aria-label="Characters icon">home</mat-icon>
+      <span>Inicio</span>
+    </button>
+
+   <mat-divider></mat-divider>
+
+    <button type="button" mat-button  class="full-width-button"  [matMenuTriggerFor]="personajes">
+      <mat-icon aria-label="Characters icon">people</mat-icon>
+      <span>Personajes</span>
+      <mat-icon >arrow_drop_down</mat-icon>
+    </button>
+
+    <mat-menu #personajes="matMenu" class="select-option">
+      <button mat-menu-item class="select-option" (click)="navigateTo('inicio/table-view')">
+        <mat-icon>list</mat-icon>
+        <span>Mostrar en Tabla</span>
+      </button>
+      <button mat-menu-item class="select-option" (click)="navigateTo('inicio/cards-view')">
+        <mat-icon>image</mat-icon>
+        <span>Mostrar en Formato Card</span>
+      </button>
+    </mat-menu>
+
+   
+    <mat-divider></mat-divider>
+
+    <button type="button" mat-button  class="full-width-button" (click)="navigateTo('episodes')">
+      <mat-icon aria-label="Episodes icon">tv</mat-icon>
+      <span>Capítulos</span>
+    </button>
+
+    <mat-divider></mat-divider>
+
+  </mat-drawer>
+
+  <header>
+    <button type="button" class="menu-button" mat-button (click)="drawer.toggle()">
+      <mat-icon aria-label="menu icon">menu</mat-icon>
+    </button>
+  </header>
+
+  <div class="sidenav-content">
+   
+
+    <router-outlet></router-outlet>
+  </div>
+
+</mat-drawer-container>

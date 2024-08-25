@@ -7,9 +7,10 @@ import { PagesComponent } from './pages.component';
 import {MatButtonModule} from '@angular/material/button';
 import {MatSidenavModule} from '@angular/material/sidenav'
 import {MatIconModule} from '@angular/material/icon';
-
-import { CardsViewComponent } from './cards-view/cards-view.component'
-
+import {MatDividerModule} from '@angular/material/divider';
+import { CardsViewComponent } from './cards-view/cards-view.component';
+import { TableViewComponent } from './table-view/table-view.component'
+import {MatMenuModule} from '@angular/material/menu';
 
 
 
@@ -18,6 +19,7 @@ import { CardsViewComponent } from './cards-view/cards-view.component'
     PagesComponent,
     InicioComponent,
     CardsViewComponent,
+    TableViewComponent,
     
 
 
@@ -30,6 +32,8 @@ import { CardsViewComponent } from './cards-view/cards-view.component'
     MatIconModule,
     MatButtonModule,
     MatSidenavModule,
+    MatDividerModule,
+    MatMenuModule
     
     
     

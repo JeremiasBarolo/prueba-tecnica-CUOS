@@ -4,7 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: 'characters',
+    path: 'inicio',
     loadChildren: () => import('./pages/pages.module').then(m => m.PagesModule),
     
   },
@@ -16,7 +16,7 @@ const routes: Routes = [
   },
   
 
-  { path: '**', redirectTo: '' }, 
+  { path: '**', redirectTo: 'inicio' }, 
 ];
 @NgModule({
   imports: [
