@@ -1,5 +1,31 @@
-/* You can add global styles to this file, and also import other style files */
+
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
+
+  
+ 
+.mat-card {
+  background-color: #424242; 
+  color: #e0e0e0; 
+}
+
+.mat-toolbar {
+  background-color: #212121; 
+  color: #e0e0e0; 
+}
+
+.mat-form-field {
+  color: #e0e0e0; 
+}
+
+.mat-input-element {
+  background-color: #424242; 
+  color: #e0e0e0; 
+}
+
+.mat-paginator {
+  background-color: #424242; 
+}
+  

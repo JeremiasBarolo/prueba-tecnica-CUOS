@@ -11,6 +11,7 @@ import {MatDividerModule} from '@angular/material/divider';
 import { CardsViewComponent } from './cards-view/cards-view.component';
 import { TableViewComponent } from './table-view/table-view.component'
 import {MatMenuModule} from '@angular/material/menu';
+import { EpisodesComponent } from './episodes/episodes.component';
 
 
 
@@ -20,6 +21,7 @@ import {MatMenuModule} from '@angular/material/menu';
     InicioComponent,
     CardsViewComponent,
     TableViewComponent,
+    EpisodesComponent,
     
 
 

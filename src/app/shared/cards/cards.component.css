@@ -1,71 +1,53 @@
+
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh; 
+  padding-bottom: 64px; 
+  box-sizing: border-box;
+}
+
+
+
 .card-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 16px;
-    justify-content: center;
-    width: calc(100% - 16px);
-    box-sizing: border-box;
-    padding-bottom: 64px;
-  }
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+  width: calc(100% - 32px); 
+  box-sizing: border-box;
+  overflow-y: auto; 
   
+}
+
 .card {
-    flex: 1 1 calc(20% - 16px);
-    box-sizing: border-box;
-    min-width: 200px;
-    background-color: #202329;
-    color: white;
+  flex: 1 1 calc(20% - 16px); 
+  box-sizing: border-box;
+  min-width: 200px;
+  max-height: 200px;
+  background-color: #202329;
+  color: white;
 }
 
-mat-card-subtitle{
-    color: white;
+mat-card-subtitle {
+  color: white;
 }
 
-
-.description-container{
-    margin-top: 1em;
+.description-container {
+  margin-top: 1em;
 }
 
 mat-card-content {
-    flex: 1; 
+  flex: 1;
 }
-  
+
 mat-paginator {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background: linear-gradient(to left, #7ac86a, #47895f);
-    color: white;
-    z-index: 1;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: linear-gradient(to left, #7ac86a, #47895f);
+  color: white;
+  z-index: 1;
 }
-
-
-/* Estilo para cambiar el color del texto en el selector del paginador */
-::ng-deep .mat-paginator .mat-select-value-text {
-    color: white !important; /* Cambia el color del texto del selector a blanco */
-  }
-  
-  /* Estilo para cambiar el fondo y el texto de las opciones desplegadas */
-  ::ng-deep .mat-paginator .mat-select-panel {
-    background-color: #333 !important; /* Fondo oscuro para el menú desplegable */
-    color: white !important; /* Texto blanco para las opciones */
-  }
-  
-  /* Estilo para cambiar el color del texto de las opciones en el menú desplegable */
-  ::ng-deep .mat-paginator .mat-option {
-    color: white !important; /* Texto blanco para las opciones */
-  }
-  
-  /* Estilo para cambiar el color del texto y el fondo de la opción seleccionada */
-  ::ng-deep .mat-paginator .mat-option.mat-selected {
-    background-color: #555 !important; /* Fondo más oscuro para la opción seleccionada */
-    color: white !important; /* Texto blanco para la opción seleccionada */
-  }
-  
-  /* Estilo para cambiar el color del icono de la flecha del selector */
-  ::ng-deep .mat-paginator .mat-select-arrow {
-    color: white !important; /* Cambia el color de la flecha del selector a blanco */
-  }
-  
-
-

@@ -1,6 +1,9 @@
-<app-no-response *ngIf="!response; else tableContent"></app-no-response>
 
-<ng-template #tableContent>
+<div class="container">
+  <mat-form-field appearance="fill" class="filter">
+    <mat-label>Buscar</mat-label>
+    <input matInput placeholder="Escriba cualquier nombre..." (input)="onSearchChange($event)">
+  </mat-form-field>
   <div class="card-container">
     <mat-card class="card" appearance="outlined" *ngFor="let dataSource of paginatedData">
       <mat-card-header>
@@ -10,20 +13,19 @@
           <img mat-card-md-image [src]="dataSource.image" alt="{{ dataSource.name }}">
         </mat-card-title-group>
       </mat-card-header>
-      <mat-card-content >
-        <ng-container *ngIf="dataSource.description">
+      <mat-card-content>
+        <ng-container *ngIf="dataSource.status">
           <p class="description-container">
-            {{ dataSource.description }}
+            {{ dataSource.status }}
           </p>
         </ng-container>
-       
-        
       </mat-card-content>
     </mat-card>
   </div>
-  <mat-paginator [length]="totalItems"
-                 [pageSize]="pageSize" 
-                 [pageSizeOptions]="[20, 50, 100]" 
-                 (page)="onPageChange($event)">
-  </mat-paginator>
-</ng-template>
+</div>
+
+<mat-paginator [length]="totalItems"
+               [pageSize]="pageSize" 
+               [pageSizeOptions]="[15, 50, 100]" 
+               (page)="onPageChange($event)">
+</mat-paginator>

@@ -1,18 +1,47 @@
-<table mat-table [dataSource]="paginatedData" class="mat-elevation-z8">
-  
-  <ng-container *ngFor="let columna of displayedColumns" [matColumnDef]="columna">
-    <th mat-header-cell *matHeaderCellDef> {{ columna }} </th>
-    <td mat-cell *matCellDef="let element"> {{ element[columna] }} </td>
-  </ng-container>
-  
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+<div class="table-container">
+ 
+  <mat-form-field appearance="fill" class="filter">
+    <mat-label>Buscar</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Buscar en la tabla">
+  </mat-form-field>
 
-</table>
+  
+  <table mat-table [dataSource]="paginatedData" matSort class="mat-elevation-z8">
+    <ng-container *ngFor="let columna of displayedColumns" [matColumnDef]="columna">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> {{ columnLabels[columna] || columna }} </th>
+      
+     
+      <ng-container *ngIf="columna === 'image'; else defaultCell">
+        <td mat-cell *matCellDef="let element">
+          <img [src]="element[columna]" alt="Character Image" style="width: 50px; height: 50px;">
+        </td>
+      </ng-container>
 
-<mat-paginator [length]="totalItems"
-  [pageSize]="pageSize"
-  [pageSizeOptions]="[10, 20, 100]"
-  (page)="onPageChange($event)">
-</mat-paginator>
+      
+      <ng-container *ngIf="columna === 'status'; else defaultCell">
+        <td mat-cell *matCellDef="let element">
+          <span [ngClass]="getStatusClass(element[columna])">
+            {{ element[columna] }}
+          </span>
+        </td>
+      </ng-container>
+
+      
+      <ng-template #defaultCell>
+        <td mat-cell *matCellDef="let element"> {{ element[columna] }} </td>
+      </ng-template>
+    </ng-container>
+
+    
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  
+  <mat-paginator [length]="dataSource.length"
+                 [pageSize]="pageSize"
+                 [pageSizeOptions]="[10, 20, 100]"
+                 showFirstLastButtons
+                 (page)="onPageChange($event)">
+  </mat-paginator>
+</div>

@@ -10,6 +10,9 @@ import { SpinnerComponent } from './spinner/spinner.component';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { NoResponseComponent } from './no-response/no-response.component'
 import { MatSelectModule } from '@angular/material/select';
+import { MatSortModule } from '@angular/material/sort';
+import { MatInputModule } from '@angular/material/input';
+import { MatDividerModule } from '@angular/material/divider';
 
 @NgModule({
   declarations: [
@@ -25,7 +28,10 @@ import { MatSelectModule } from '@angular/material/select';
     MatIconModule,
     MatCardModule,
     MatPaginatorModule,
-    MatSelectModule
+    MatSelectModule,
+    MatSortModule,
+    MatInputModule,
+    MatDividerModule
   ],
 
   exports: [

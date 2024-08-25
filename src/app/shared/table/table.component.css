@@ -6,3 +6,32 @@
   mat-spinner {
     margin: 10px;
   }
+
+.status-alive {
+  color: green;
+  font-weight: bold;
+}
+
+.status-dead {
+  color: red;
+  font-weight: bold;
+}
+
+.status-unknown {
+  color: black;
+  font-weight: bold;
+}
+
+mat-paginator {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: linear-gradient(to left, #7ac86a, #47895f);
+  color: white;
+  z-index: 1;
+}
+
+.filter {
+  margin-bottom: 16px;
+}

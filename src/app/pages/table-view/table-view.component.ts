@@ -9,7 +9,12 @@ import { PersonajesService } from 'src/app/services/personajes.service';
 export class TableViewComponent {
   data: any[] = [];  
   isLoading: boolean = true;
-
+columnLabels = {
+  name: 'Nombre',
+  image: 'Imagen',
+  species: 'Especie',
+  status: 'Estado'
+};
   
 
   constructor(private personajesService: PersonajesService) {}

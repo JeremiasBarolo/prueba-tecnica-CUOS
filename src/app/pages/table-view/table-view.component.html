@@ -7,5 +7,6 @@
 *ngIf="!isLoading" 
 [dataSource]="data" 
 [isLoading]="isLoading" 
-[displayedColumns]="['id', 'name', 'description']"
+[displayedColumns]="['name', 'image','species', 'status' ]"
+[columnLabels]="columnLabels"
 ></app-table>
