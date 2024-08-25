@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild, AfterViewInit } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -10,7 +10,7 @@ import { DetailsComponent } from '../details/details.component';
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.css']
 })
-export class TableComponent implements OnInit, AfterViewInit {
+export class TableComponent implements OnInit, AfterViewInit, OnChanges {
   @Input() displayedColumns: string[] = [];
   @Input() dataSource: any[] = [];
   @Input() isLoading: boolean = true;
@@ -22,6 +22,7 @@ export class TableComponent implements OnInit, AfterViewInit {
   dataSourceMat = new MatTableDataSource<any>([]);
   searchTerm: string = '';
   pageSize: number = 20;
+  currentPage: number = 0;
 
   statusOptions: string[] = [];
   speciesOptions: string[] = [];
@@ -31,66 +32,67 @@ export class TableComponent implements OnInit, AfterViewInit {
   constructor(public dialog: MatDialog) {}
 
   ngOnInit() {
-    this.dataSourceMat.data = this.dataSource;
-    this.extractFilterOptions();
-    this.applyFilter(); 
+    this.updateOptions();
+    this.updateFilteredData();
   }
 
   ngAfterViewInit() {
     this.dataSourceMat.paginator = this.paginator;
     this.dataSourceMat.sort = this.sort;
-    this.applyFilter(); 
   }
 
-  ngOnChanges() {
-    this.dataSourceMat.data = this.dataSource;
-    this.extractFilterOptions();
-    this.applyFilter(); 
-    this.dataSourceMat.paginator?.firstPage(); 
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['dataSource']) {
+      this.updateOptions();
+      this.updateFilteredData();
+    }
   }
 
   onSearchChange(event: Event) {
     const input = event.target as HTMLInputElement;
-    this.searchTerm = input.value.trim().toLowerCase();
-    this.applyFilter();
+    if (input) {
+      this.searchTerm = input.value.toLowerCase();
+      this.updateFilteredData();
+    }
   }
 
-  onStatusChange(selectedStatus: string) {
-    this.selectedStatus = selectedStatus;
-    this.applyFilter();
+  onStatusChange(status: string) {
+    this.selectedStatus = status;
+    this.updateFilteredData();
   }
 
-  onSpeciesChange(selectedSpecies: string) {
-    this.selectedSpecies = selectedSpecies;
-    this.applyFilter();
+  onSpeciesChange(species: string) {
+    this.selectedSpecies = species;
+    this.updateFilteredData();
   }
 
-  private applyFilter() {
-    this.dataSourceMat.filterPredicate = (data: any, filter: string) => {
-      const dataStr = (data.name || '').toLowerCase() +
-                      (data.species || '').toLowerCase() +
-                      (data.description || '').toLowerCase();
-      const matchSearch = dataStr.includes(this.searchTerm.trim().toLowerCase());
+  private updateFilteredData() {
+    const filteredData = this.dataSource.filter(data => {
+      const matchesSearch = !this.searchTerm || 
+        data.name.toLowerCase().includes(this.searchTerm) ||
+        data.species.toLowerCase().includes(this.searchTerm) ||
+        (data.description && data.description.toLowerCase().includes(this.searchTerm));
+      const matchesStatus = !this.selectedStatus || data.status === this.selectedStatus;
+      const matchesSpecies = !this.selectedSpecies || data.species === this.selectedSpecies;
 
-      const matchStatus = this.selectedStatus ? data.status.toLowerCase() === this.selectedStatus.toLowerCase() : true;
-      const matchSpecies = this.selectedSpecies ? data.species.toLowerCase() === this.selectedSpecies.toLowerCase() : true;
-
-      return matchSearch && matchStatus && matchSpecies;
-    };
-    this.dataSourceMat.filter = ''; 
-  }
-
-  private extractFilterOptions() {
-    const statuses = new Set<string>();
-    const species = new Set<string>();
-
-    this.dataSource.forEach(item => {
-      if (item.status) statuses.add(item.status);
-      if (item.species) species.add(item.species);
+      return matchesSearch && matchesStatus && matchesSpecies;
     });
 
-    this.statusOptions = Array.from(statuses);
-    this.speciesOptions = Array.from(species);
+    this.dataSourceMat.data = filteredData;
+    this.dataSourceMat.paginator?.firstPage(); 
+  }
+
+  private updateOptions() {
+    const statusSet = new Set<string>();
+    const speciesSet = new Set<string>();
+
+    this.dataSource.forEach(item => {
+      if (item.status) statusSet.add(item.status);
+      if (item.species) speciesSet.add(item.species);
+    });
+
+    this.statusOptions = Array.from(statusSet);
+    this.speciesOptions = Array.from(speciesSet);
   }
 
   getStatusClass(status: string): string {

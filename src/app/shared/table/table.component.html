@@ -10,7 +10,7 @@
       </mat-form-field>
 
       
-      <mat-form-field  class="filter">
+      <mat-form-field class="filter">
         <mat-label>Estado</mat-label>
         <mat-select (selectionChange)="onStatusChange($event.value)">
           <mat-option *ngFor="let status of statusOptions" [value]="status">
@@ -18,8 +18,8 @@
           </mat-option>
         </mat-select>
       </mat-form-field>
-
-      <mat-form-field  class="filter">
+      
+      <mat-form-field class="filter">
         <mat-label>Especie</mat-label>
         <mat-select (selectionChange)="onSpeciesChange($event.value)">
           <mat-option *ngFor="let species of speciesOptions" [value]="species">
@@ -27,6 +27,8 @@
           </mat-option>
         </mat-select>
       </mat-form-field>
+
+      
     </div>
 
   <div class="table-container">
