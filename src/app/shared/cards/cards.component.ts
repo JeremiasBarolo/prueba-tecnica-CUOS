@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 
 @Component({
@@ -6,21 +6,28 @@ import { PageEvent } from '@angular/material/paginator';
   templateUrl: './cards.component.html',
   styleUrls: ['./cards.component.css']
 })
-export class CardsComponent {
+export class CardsComponent implements OnChanges, OnInit {
   
 
   
   @Input() dataSources: any[] = [];
   @Input() isLoading: boolean = true;
+  @Input() response: boolean = true;
 
   totalItems: number = 0;
-  pageSize: number = 10;
+  pageSize: number = 20;
   currentPage: number = 0;
   paginatedData: any[] = [];
 
-  ngOnInit() {
+  ngOnInit() {    
     this.totalItems = this.dataSources.length;
     this.updatePaginatedData();
+  }
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['dataSources']) {
+      this.totalItems = this.dataSources.length;
+      this.updatePaginatedData();
+    }
   }
 
   onPageChange(event: PageEvent) {

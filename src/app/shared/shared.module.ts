@@ -7,13 +7,15 @@ import {MatIconModule} from '@angular/material/icon';
 import { CardsComponent } from './cards/cards.component'
 import {MatCardModule} from '@angular/material/card';
 import { SpinnerComponent } from './spinner/spinner.component';
-import {MatPaginatorModule} from '@angular/material/paginator'
+import {MatPaginatorModule} from '@angular/material/paginator';
+import { NoResponseComponent } from './no-response/no-response.component'
 
 @NgModule({
   declarations: [
     TableComponent,
     CardsComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    NoResponseComponent
   ],
   imports: [
     CommonModule,
@@ -26,7 +28,8 @@ import {MatPaginatorModule} from '@angular/material/paginator'
 
   exports: [
     TableComponent,
-    CardsComponent
+    CardsComponent,
+    SpinnerComponent
   ]
 })
 export class SharedModule { }

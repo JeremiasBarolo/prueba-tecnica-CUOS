@@ -1,2 +1,11 @@
 
-<app-table [dataSource]="data" [isLoading]="isLoading" [displayedColumns]="['id', 'name', 'description']"></app-table>
+<div *ngIf="isLoading">
+    <app-spinner></app-spinner>
+</div>
+
+<app-table
+*ngIf="!isLoading" 
+[dataSource]="data" 
+[isLoading]="isLoading" 
+[displayedColumns]="['id', 'name', 'description']"
+></app-table>

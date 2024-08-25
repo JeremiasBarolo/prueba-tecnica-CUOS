@@ -1,44 +1,60 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { map, Observable } from 'rxjs';
-import * as md5 from 'md5';
+import { catchError, concatMap, forkJoin, map, Observable, of, switchMap } from 'rxjs';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class PersonajesService {
 
-  private baseUrl = 'https://gateway.marvel.com:443/v1/public';
-  private publicKey = '966b885b7fc91f8befa0089fe63e98ff';
-  private privateKey = '7b6dbb682995efa3d8288f496f3bb0bb82c1ce7f';
+  private baseUrl = 'https://rickandmortyapi.com/api';
 
   constructor(private http: HttpClient) {}
 
-  
-  getCharacters(limit: number = 10): Observable<any> {
-    const timestamp = new Date().getTime().toString();
-    const hash = md5(timestamp + this.privateKey + this.publicKey); 
-
-    const params = new HttpParams()
-      .set('apikey', this.publicKey)
-      .set('ts', timestamp)
-      .set('hash', hash)
-      .set('limit', limit.toString());
-
-    return this.http.get(`${this.baseUrl}/characters`, { params });
+  getCharacter(id: number): Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}/character/${id}`);
   }
 
+  getEpisodes(): Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}/episode`);
+  }
 
-  getCharacterImages(limit: number = 10): Observable<any> {
-    return this.getCharacters(limit).pipe(
-      map(response => {
+  getEpisode(id: number): Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}/episode/${id}`);
+  }
+
+  getLocations(): Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}/location`);
+  }
+
+  getLocation(id: number): Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}/location/${id}`);
+  }
+
+  getCharacters(page: number): Observable<any[]> {
+    return this.http.get<any>(`${this.baseUrl}/character?page=${page}`).pipe(
+      map(response => response.results)
+    );
+  }
+
+  getAllCharacters(): any {
+    return this.getCharacters(1).pipe(
+      concatMap(firstPage => {
+        const totalPages = 42;
+        const pageRequests = [];
         
-        return response.data.results.map((character: any) => ({
-          id: character.id,
-          name: character.name,
-          description: character.description,
-          thumbnail: `${character.thumbnail.path}.${character.thumbnail.extension}`
-        }));
+        for (let page = 2; page <= totalPages; page++) {
+          pageRequests.push(this.getCharacters(page));
+        }
+        
+        return forkJoin(pageRequests).pipe(
+          map(pages => [firstPage, ...pages].flat())
+        );
+      }),
+      catchError(error => {
+        console.error('Error fetching characters:', error);
+        return of([]); // Return an empty array in case of error
       })
     );
   }

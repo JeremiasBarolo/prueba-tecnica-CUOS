@@ -9,21 +9,21 @@ import { PersonajesService } from 'src/app/services/personajes.service';
 export class InicioComponent {
   data: any[] = [];  
   isLoading: boolean = true;
-  personajesService: any;
+
   
 
-  constructor(private marvelService: PersonajesService) {}
+  constructor(private personajesService: PersonajesService) {}
 
   ngOnInit(): void {
     
-    this.marvelService.getCharacters().subscribe({
-      next: (response) => {
-        this.data = response.data.results;  
+    this.personajesService.getAllCharacters().subscribe({
+      next: (response: any[]) => {
+        this.data = response;  
         this.isLoading = false;
-        console.log(this.data);
+        console.log(response);
           
       },
-      error: (err) => {
+      error: (err: any) => {
         console.error('Error fetching data', err);
         this.isLoading = false;  
       }
