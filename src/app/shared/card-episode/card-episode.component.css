@@ -1,7 +1,7 @@
 html, body {
     height: 100%;
     margin: 0;
-    overflow: hidden; 
+    overflow: hidden;
   }
   
   .container {
@@ -11,10 +11,8 @@ html, body {
     padding: 16px;
     box-sizing: border-box;
     margin-top: 3em;
-    overflow: hidden; 
+    overflow: hidden;
   }
-  
-  
   
   .cards-wrapper {
     flex: 1;
@@ -22,21 +20,19 @@ html, body {
     flex-wrap: wrap;
     gap: 16px;
     justify-content: center;
-    overflow: auto;
+    overflow-y: auto; 
   }
   
   .card {
-    flex: 1 1 calc(25% - 16px);
-    box-sizing: border-box;
-    min-width: 200px;
-    max-width: 300px; 
-    max-height: 200px; 
+    flex: 1 1 calc(100% - 16px); 
+    max-width: 300px;
+    max-height: 200px;
     background-color: #202329;
     color: white;
     overflow: auto;
   }
-
-  .card:hover{
+  
+  .card:hover {
     cursor: pointer;
   }
   
@@ -47,7 +43,7 @@ html, body {
   .filter-container {
     display: flex;
     gap: 16px;
-    margin-top: 5em;
+    flex-direction: column; 
   }
   
   .description-container {

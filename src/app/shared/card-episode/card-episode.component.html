@@ -1,29 +1,31 @@
-<div class="filter-container">
-    <h1>Listado de Episodios</h1>
-</div>
-<div class="cards-wrapper">
-    <mat-card class="card" appearance="outlined" *ngFor="let data of paginatedData">
-      <mat-card-header (click)="showData(data)">
-        <mat-card-title-group>
-          <mat-card-title>{{ data.name }}</mat-card-title>
-          <mat-card-subtitle>{{ data.air_ate | date}}</mat-card-subtitle>
-        </mat-card-title-group>
-      </mat-card-header>
-      <mat-card-content (click)="showData(data)">
-        <ng-container *ngIf="data.episode">
-          <p class="description-container">
-            {{ data.episode }}
-          </p>
-          <p class="description-container">
-            <strong>Cantidad de Personajes:</strong> {{ data.characters.length }}
-          </p>
-        </ng-container>
-      </mat-card-content>
-    </mat-card>
-</div>
-<mat-paginator [length]="totalItems"
-               [pageSize]="pageSize" 
-               [pageSizeOptions]="[15, 50, 100]" 
-               (page)="onPageChange($event)">
-</mat-paginator>
-
+<div class="container">
+    <div class="filter-container">
+      <h1>Listado de Episodios</h1>
+    </div>
+    <div class="cards-wrapper">
+      <mat-card class="card" appearance="outlined" *ngFor="let data of paginatedData">
+        <mat-card-header (click)="showData(data)">
+          <mat-card-title-group>
+            <mat-card-title>{{ data.name }}</mat-card-title>
+            <mat-card-subtitle>{{ data.air_date | date }}</mat-card-subtitle>
+          </mat-card-title-group>
+        </mat-card-header>
+        <mat-card-content (click)="showData(data)">
+          <ng-container *ngIf="data.episode">
+            <p class="description-container">
+              {{ data.episode }}
+            </p>
+            <p class="description-container">
+              <strong>Cantidad de Personajes:</strong> {{ data.characters.length }}
+            </p>
+          </ng-container>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <mat-paginator [length]="totalItems"
+                   [pageSize]="pageSize" 
+                   [pageSizeOptions]="[15, 50, 100]" 
+                   (page)="onPageChange($event)">
+    </mat-paginator>
+  </div>
+  
