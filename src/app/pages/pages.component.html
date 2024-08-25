@@ -16,22 +16,22 @@
 
    <mat-divider></mat-divider>
 
-    <button type="button" mat-button  class="full-width-button"  [matMenuTriggerFor]="personajes">
-      <mat-icon aria-label="Characters icon">people</mat-icon>
-      <span>Personajes</span>
-      <mat-icon >arrow_drop_down</mat-icon>
+   <button type="button" mat-button class="full-width-button" [matMenuTriggerFor]="personajes">
+    <mat-icon aria-label="Characters icon">people</mat-icon>
+    <span>Personajes</span>
+    <mat-icon>arrow_drop_down</mat-icon>
+  </button>
+  
+  <mat-menu #personajes="matMenu" class="custom-mat-menu select-option">
+    <button mat-menu-item class="select-option" (click)="navigateTo('inicio/table-view')">
+      <mat-icon>list</mat-icon>
+      <span>Mostrar en Tabla</span>
     </button>
-
-    <mat-menu #personajes="matMenu" class="select-option">
-      <button mat-menu-item class="select-option" (click)="navigateTo('inicio/table-view')">
-        <mat-icon>list</mat-icon>
-        <span>Mostrar en Tabla</span>
-      </button>
-      <button mat-menu-item class="select-option" (click)="navigateTo('inicio/cards-view')">
-        <mat-icon>image</mat-icon>
-        <span>Mostrar en Formato Card</span>
-      </button>
-    </mat-menu>
+    <button mat-menu-item class="select-option" (click)="navigateTo('inicio/cards-view')">
+      <mat-icon>image</mat-icon>
+      <span>Mostrar en Formato Card</span>
+    </button>
+  </mat-menu>
 
    
     <mat-divider></mat-divider>

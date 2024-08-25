@@ -60,7 +60,7 @@ export class CardsComponent implements OnChanges, OnInit {
     } else {
       this.filteredData = [...this.dataSources];
     }
-    this.totalItems = this.filteredData.length; // Actualizar el totalItems
+    this.totalItems = this.filteredData.length; 
     this.updatePaginatedData();
   }
 

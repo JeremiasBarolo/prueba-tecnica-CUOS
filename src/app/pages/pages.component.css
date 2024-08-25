@@ -95,3 +95,19 @@ header{
   width: 100%;
   overflow: hidden;
 }
+
+mat-menu{
+  background-color: #1f2229;
+}
+
+.custom-mat-menu {
+  background-color: #f30505; /* Cambia el color de fondo a lo que prefieras */
+}
+
+.custom-mat-menu .mat-menu-item {
+  color: #333; /* Cambia el color del texto si es necesario */
+}
+
+.custom-mat-menu .mat-menu-item:hover {
+  background-color: #ff1b1b; /* Cambia el color de fondo al pasar el mouse */
+}

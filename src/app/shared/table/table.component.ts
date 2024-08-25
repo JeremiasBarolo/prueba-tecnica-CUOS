@@ -1,57 +1,63 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator, PageEvent } from '@angular/material/paginator';
+import { Component, Input, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { DetailsComponent } from '../details/details.component';
 import { MatDialog } from '@angular/material/dialog';
+import { DetailsComponent } from '../details/details.component';
 
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.css']
 })
-export class TableComponent implements OnInit {
+export class TableComponent implements OnInit, AfterViewInit {
   @Input() displayedColumns: string[] = [];
   @Input() dataSource: any[] = [];
   @Input() isLoading: boolean = true;
   @Input() columnLabels: { [key: string]: string } = {}; 
 
-  @ViewChild(MatPaginator)
-  paginator!: MatPaginator;
-  @ViewChild(MatSort)
-  sort!: MatSort;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
 
-  totalItems: number = 0;
+  dataSourceMat = new MatTableDataSource<any>([]);
+  searchTerm: string = '';
   pageSize: number = 20;
-  currentPage: number = 0;
-  paginatedData = new MatTableDataSource<any>([]);
 
   constructor(public dialog: MatDialog) {}
 
   ngOnInit() {
-    this.paginatedData.data = this.dataSource;
-    this.totalItems = this.dataSource.length;
+    this.dataSourceMat.data = this.dataSource;
+    this.applyFilter(); 
   }
 
   ngAfterViewInit() {
-    this.paginatedData.paginator = this.paginator;
-    this.paginatedData.sort = this.sort;
+    this.dataSourceMat.paginator = this.paginator;
+    this.dataSourceMat.sort = this.sort;
+    this.applyFilter(); 
   }
 
-  onPageChange(event: PageEvent) {
+  ngOnChanges() {
     
-    this.paginatedData.paginator = this.paginator;
+    this.dataSourceMat.data = this.dataSource;
+    this.applyFilter(); 
+    this.dataSourceMat.paginator?.firstPage(); 
   }
 
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.paginatedData.filter = filterValue.trim().toLowerCase();
-
-    if (this.paginatedData.paginator) {
-      this.paginatedData.paginator.firstPage();
-    }
+  onSearchChange(event: Event) {
+    const input = event.target as HTMLInputElement;
+    this.searchTerm = input.value.trim().toLowerCase();
+    this.applyFilter();
   }
 
+  private applyFilter() {
+    this.dataSourceMat.filterPredicate = (data: any, filter: string) => {
+      const dataStr = (data.name || '').toLowerCase() +
+                      (data.species || '').toLowerCase() +
+                      (data.description || '').toLowerCase();
+      return dataStr.includes(filter);
+    };
+    this.dataSourceMat.filter = this.searchTerm.trim().toLowerCase();
+  }
 
   getStatusClass(status: string): string {
     switch (status.toLowerCase()) {

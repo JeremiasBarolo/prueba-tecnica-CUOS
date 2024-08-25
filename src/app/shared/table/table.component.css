@@ -1,11 +1,8 @@
-.spinner {
-    text-align: center;
-    margin: 20px;
-  }
-  
-  mat-spinner {
-    margin: 10px;
-  }
+html, body {
+  height: 100%;
+  margin: 0;
+  overflow: hidden; 
+}
 
 .status-alive {
   color: green;
@@ -39,4 +36,12 @@ mat-paginator {
   background: linear-gradient(to left, #7ac86a, #47895f);
   color: white;
   z-index: 1;
+}
+
+table{
+  background-color: #212121;
+}
+
+th, td, tr{
+  color: white;
 }
