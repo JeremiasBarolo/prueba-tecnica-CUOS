@@ -1,22 +1,42 @@
-
 <div class="container">
   <mat-form-field appearance="fill" class="filter">
     <mat-label>Buscar</mat-label>
     <input matInput placeholder="Escriba cualquier nombre..." (input)="onSearchChange($event)">
   </mat-form-field>
+
+  <div class="filter-container">
+    <mat-form-field class="filter">
+      <mat-label>Estado</mat-label>
+      <mat-select (selectionChange)="onStatusChange($event.value)">
+        <mat-option *ngFor="let status of statusOptions" [value]="status">
+          {{ status }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="filter">
+      <mat-label>Especie</mat-label>
+      <mat-select (selectionChange)="onSpeciesChange($event.value)">
+        <mat-option *ngFor="let species of speciesOptions" [value]="species">
+          {{ species }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
   <div class="cards-wrapper">
-    <mat-card class="card" appearance="outlined" *ngFor="let dataSource of paginatedData" >
-      <mat-card-header (click)="showData(dataSource)">
+    <mat-card class="card" appearance="outlined" *ngFor="let data of paginatedData">
+      <mat-card-header (click)="showData(data)">
         <mat-card-title-group>
-          <mat-card-title>{{ dataSource.name }}</mat-card-title>
-          <mat-card-subtitle>{{ dataSource.species }}</mat-card-subtitle>
-          <img mat-card-md-image [src]="dataSource.image" alt="{{ dataSource.name }}">
+          <mat-card-title>{{ data.name }}</mat-card-title>
+          <mat-card-subtitle>{{ data.species }}</mat-card-subtitle>
+          <img mat-card-md-image [src]="data.image" alt="{{ data.name }}">
         </mat-card-title-group>
       </mat-card-header>
-      <mat-card-content (click)="showData(dataSource)">
-        <ng-container *ngIf="dataSource.status">
+      <mat-card-content (click)="showData(data)">
+        <ng-container *ngIf="data.status">
           <p class="description-container">
-            {{ dataSource.status }}
+            {{ data.status }}
           </p>
         </ng-container>
       </mat-card-content>

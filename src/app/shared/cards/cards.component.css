@@ -30,6 +30,7 @@ html, body {
   box-sizing: border-box;
   min-width: 200px;
   max-width: 300px; 
+  max-height: 200px; 
   background-color: #202329;
   color: white;
   overflow: auto;
@@ -37,6 +38,10 @@ html, body {
 
 mat-card-subtitle {
   color: white;
+}
+.filter-container {
+  display: flex;
+  gap: 16px;
 }
 
 .description-container {

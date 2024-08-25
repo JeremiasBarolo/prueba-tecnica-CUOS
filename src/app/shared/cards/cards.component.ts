@@ -1,4 +1,3 @@
-// cards.component.ts
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { DetailsComponent } from '../details/details.component';
@@ -10,12 +9,12 @@ import { MatDialog } from '@angular/material/dialog';
   styleUrls: ['./cards.component.css']
 })
 export class CardsComponent implements OnChanges, OnInit {
-
   @Input() dataSources: any[] = [];
   @Input() isLoading: boolean = true;
   @Input() response: boolean = true;
 
-  constructor(public dialog: MatDialog) {}
+  statusOptions: string[] = [];
+  speciesOptions: string[] = [];
 
   totalItems: number = 0;
   pageSize: number = 20;
@@ -23,15 +22,21 @@ export class CardsComponent implements OnChanges, OnInit {
   paginatedData: any[] = [];
   filteredData: any[] = [];
   searchTerm: string = '';
+  selectedStatus: string = '';
+  selectedSpecies: string = '';
+
+  constructor(public dialog: MatDialog) {}
 
   ngOnInit() {    
     this.totalItems = this.dataSources.length;
     this.updateFilteredData();
+    this.updateOptions();
   }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['dataSources']) {
       this.totalItems = this.dataSources.length;
+      this.updateOptions();
       this.updateFilteredData();
     }
   }
@@ -50,17 +55,29 @@ export class CardsComponent implements OnChanges, OnInit {
     }
   }
 
+  onStatusChange(status: any) {
+    this.selectedStatus = status;
+    this.updateFilteredData();
+  }
+
+  onSpeciesChange(species: any) {
+    this.selectedSpecies = species;
+    this.updateFilteredData();
+  }
+
   private updateFilteredData() {
-    if (this.searchTerm) {
-      this.filteredData = this.dataSources.filter(data =>
+    this.filteredData = this.dataSources.filter(data => {
+      const matchesSearch = !this.searchTerm || 
         data.name.toLowerCase().includes(this.searchTerm) ||
         data.species.toLowerCase().includes(this.searchTerm) ||
-        (data.description && data.description.toLowerCase().includes(this.searchTerm))
-      );
-    } else {
-      this.filteredData = [...this.dataSources];
-    }
-    this.totalItems = this.filteredData.length; 
+        (data.description && data.description.toLowerCase().includes(this.searchTerm));
+      const matchesStatus = !this.selectedStatus || data.status === this.selectedStatus;
+      const matchesSpecies = !this.selectedSpecies || data.species === this.selectedSpecies;
+
+      return matchesSearch && matchesStatus && matchesSpecies;
+    });
+
+    this.totalItems = this.filteredData.length;
     this.updatePaginatedData();
   }
 
@@ -68,6 +85,19 @@ export class CardsComponent implements OnChanges, OnInit {
     const startIndex = this.currentPage * this.pageSize;
     const endIndex = startIndex + this.pageSize;
     this.paginatedData = this.filteredData.slice(startIndex, endIndex);
+  }
+
+  private updateOptions() {
+    const statusSet = new Set<string>();
+    const speciesSet = new Set<string>();
+
+    this.dataSources.forEach(item => {
+      if (item.status) statusSet.add(item.status);
+      if (item.species) speciesSet.add(item.species);
+    });
+
+    this.statusOptions = Array.from(statusSet);
+    this.speciesOptions = Array.from(speciesSet);
   }
 
   showData(data: any): void {

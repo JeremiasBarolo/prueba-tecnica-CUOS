@@ -33,6 +33,9 @@ export class PagesComponent {
   }
 
   navigateTo(route: string) {
+    if(this.isMobile){
+      this.drawer?.close();
+    }
     this.router.navigate([route]);
   }
 }
