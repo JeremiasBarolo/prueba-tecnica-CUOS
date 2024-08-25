@@ -9,6 +9,7 @@ html, body {
     padding: 16px; 
     height: 100%;
     background-color: #272b33; 
+    overflow: hidden;
 }
 
 .container {
@@ -89,4 +90,8 @@ header{
   border-left: #272b33;
   border-right: #272b33;
   border-color: #ffffff0c;
+  position: fixed;
+  z-index: 2;
+  width: 100%;
+  overflow: hidden;
 }

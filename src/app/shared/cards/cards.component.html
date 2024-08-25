@@ -4,7 +4,7 @@
     <mat-label>Buscar</mat-label>
     <input matInput placeholder="Escriba cualquier nombre..." (input)="onSearchChange($event)">
   </mat-form-field>
-  <div class="card-container">
+  <div class="cards-wrapper">
     <mat-card class="card" appearance="outlined" *ngFor="let dataSource of paginatedData">
       <mat-card-header>
         <mat-card-title-group>

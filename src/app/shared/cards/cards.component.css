@@ -1,33 +1,38 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  overflow: hidden; 
+}
 
 .container {
   display: flex;
   flex-direction: column;
-  height: 100vh; 
-  padding-bottom: 64px; 
+  height: calc(100vh - 10em); 
+  padding: 16px;
   box-sizing: border-box;
+  margin-top: 3em;
+  overflow: hidden; 
 }
 
 
 
-.card-container {
+.cards-wrapper {
   flex: 1;
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
   justify-content: center;
-  width: calc(100% - 32px); 
-  box-sizing: border-box;
-  overflow-y: auto; 
-  
+  overflow: auto;
 }
 
 .card {
-  flex: 1 1 calc(20% - 16px); 
+  flex: 1 1 calc(25% - 16px);
   box-sizing: border-box;
   min-width: 200px;
-  max-height: 200px;
+  max-width: 300px; 
   background-color: #202329;
   color: white;
+  overflow: auto;
 }
 
 mat-card-subtitle {
