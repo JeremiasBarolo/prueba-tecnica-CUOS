@@ -15,6 +15,10 @@ import { MatInputModule } from '@angular/material/input';
 import { MatDividerModule } from '@angular/material/divider';
 import { DetailsComponent } from './details/details.component';
 import {MatDialogModule} from '@angular/material/dialog';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { MenuButtonComponent } from './menu-button/menu-button.component';
+import { GoBackButtonComponent } from './go-back-button/go-back-button.component';
+
 
 @NgModule({
   declarations: [
@@ -22,7 +26,11 @@ import {MatDialogModule} from '@angular/material/dialog';
     CardsComponent,
     SpinnerComponent,
     NoResponseComponent,
-    DetailsComponent
+    DetailsComponent,
+    PageNotFoundComponent,
+    MenuButtonComponent,
+    GoBackButtonComponent
+
   ],
   imports: [
     CommonModule,
@@ -41,7 +49,10 @@ import {MatDialogModule} from '@angular/material/dialog';
   exports: [
     TableComponent,
     CardsComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    PageNotFoundComponent,
+    MenuButtonComponent,
+    GoBackButtonComponent
   ]
 })
 export class SharedModule { }

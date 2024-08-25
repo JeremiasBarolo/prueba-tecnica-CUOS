@@ -39,6 +39,7 @@ html, body {
 mat-card-subtitle {
   color: white;
 }
+
 .filter-container {
   display: flex;
   gap: 16px;
@@ -57,7 +58,7 @@ mat-paginator {
   bottom: 0;
   left: 0;
   width: 100%;
-  background: linear-gradient(to left, #7ac86a, #47895f);
+  background: #2c9caf;
   color: white;
   z-index: 1;
 }

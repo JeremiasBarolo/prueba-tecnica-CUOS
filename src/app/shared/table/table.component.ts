@@ -23,10 +23,16 @@ export class TableComponent implements OnInit, AfterViewInit {
   searchTerm: string = '';
   pageSize: number = 20;
 
+  statusOptions: string[] = [];
+  speciesOptions: string[] = [];
+  selectedStatus: string | null = null;
+  selectedSpecies: string | null = null;
+
   constructor(public dialog: MatDialog) {}
 
   ngOnInit() {
     this.dataSourceMat.data = this.dataSource;
+    this.extractFilterOptions();
     this.applyFilter(); 
   }
 
@@ -37,8 +43,8 @@ export class TableComponent implements OnInit, AfterViewInit {
   }
 
   ngOnChanges() {
-    
     this.dataSourceMat.data = this.dataSource;
+    this.extractFilterOptions();
     this.applyFilter(); 
     this.dataSourceMat.paginator?.firstPage(); 
   }
@@ -49,14 +55,42 @@ export class TableComponent implements OnInit, AfterViewInit {
     this.applyFilter();
   }
 
+  onStatusChange(selectedStatus: string) {
+    this.selectedStatus = selectedStatus;
+    this.applyFilter();
+  }
+
+  onSpeciesChange(selectedSpecies: string) {
+    this.selectedSpecies = selectedSpecies;
+    this.applyFilter();
+  }
+
   private applyFilter() {
     this.dataSourceMat.filterPredicate = (data: any, filter: string) => {
       const dataStr = (data.name || '').toLowerCase() +
                       (data.species || '').toLowerCase() +
                       (data.description || '').toLowerCase();
-      return dataStr.includes(filter);
+      const matchSearch = dataStr.includes(this.searchTerm.trim().toLowerCase());
+
+      const matchStatus = this.selectedStatus ? data.status.toLowerCase() === this.selectedStatus.toLowerCase() : true;
+      const matchSpecies = this.selectedSpecies ? data.species.toLowerCase() === this.selectedSpecies.toLowerCase() : true;
+
+      return matchSearch && matchStatus && matchSpecies;
     };
-    this.dataSourceMat.filter = this.searchTerm.trim().toLowerCase();
+    this.dataSourceMat.filter = ''; 
+  }
+
+  private extractFilterOptions() {
+    const statuses = new Set<string>();
+    const species = new Set<string>();
+
+    this.dataSource.forEach(item => {
+      if (item.status) statuses.add(item.status);
+      if (item.species) species.add(item.species);
+    });
+
+    this.statusOptions = Array.from(statuses);
+    this.speciesOptions = Array.from(species);
   }
 
   getStatusClass(status: string): string {

@@ -6,17 +6,17 @@
           <img [src]="data.image" alt="{{data.name}}">
         </div>
         <div class="dialog-info">
-          <h2>{{data.name}}</h2>
+          <h2 >{{data.name}}</h2>
           <p><strong>Estado:</strong> {{data.status}}</p>
           <p><strong>Especie:</strong> {{data.species}}</p>
           <p><strong>Sexo:</strong> {{data.gender}}</p>
-          <p><strong>Origen:</strong> {{data.origin}}</p>
-          <p><strong>Ubicación:</strong> {{data.location}}</p>
+          <p><strong>Origen:</strong> {{data?.origin?.name}}</p>
+          <p><strong>Ubicación:</strong> {{data?.location?.name}}</p>
           <p><strong>Cantidad de Apariciones:</strong> {{data.episode.length}}</p>
         </div>
       </div>
     </mat-dialog-content>
     <mat-dialog-actions>
-      <button mat-button (click)="onClose()">Cerrar</button>
+      <app-go-back-button (click)="onClose()"> </app-go-back-button>
     </mat-dialog-actions>
 </div>

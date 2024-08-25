@@ -3,21 +3,6 @@ html, body {
   margin: 0;
   overflow: hidden; 
 }
-
-.status-alive {
-  color: green;
-  font-weight: bold;
-}
-
-.status-dead {
-  color: red;
-  font-weight: bold;
-}
-
-.status-unknown {
-  color: rgb(107, 98, 98);
-  font-weight: bold;
-}
 .container {
   display: flex;
   flex-direction: column;
@@ -28,20 +13,32 @@ html, body {
   overflow-y: scroll;
 }
 
+.filter-container {
+  display: flex;
+  gap: 16px;
+}
+
+
+
+.table-container {
+  display: flex;
+  flex-direction: column;
+}
+
+table {
+  background-color: #212121;
+}
+
+th, td, tr {
+  color: white;
+}
+
 mat-paginator {
   position: fixed;
   bottom: 0;
   left: 0;
   width: 100%;
-  background: linear-gradient(to left, #7ac86a, #47895f);
+  background: #2c9caf;
   color: white;
   z-index: 1;
-}
-
-table{
-  background-color: #212121;
-}
-
-th, td, tr{
-  color: white;
 }

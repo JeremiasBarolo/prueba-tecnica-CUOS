@@ -1,10 +1,11 @@
 <div class="container">
-  <mat-form-field appearance="fill" class="filter">
-    <mat-label>Buscar</mat-label>
-    <input matInput placeholder="Escriba cualquier nombre..." (input)="onSearchChange($event)">
-  </mat-form-field>
-
+  
   <div class="filter-container">
+    <mat-form-field appearance="fill" class="filter">
+      <mat-label>Buscar</mat-label>
+      <input matInput placeholder="Escriba cualquier nombre..." (input)="onSearchChange($event)">
+    </mat-form-field>
+
     <mat-form-field class="filter">
       <mat-label>Estado</mat-label>
       <mat-select (selectionChange)="onStatusChange($event.value)">

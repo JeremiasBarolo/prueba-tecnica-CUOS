@@ -46,9 +46,7 @@
   </mat-drawer>
 
   <header>
-    <button type="button" class="menu-button" mat-button (click)="drawer.toggle()">
-      <mat-icon aria-label="menu icon">menu</mat-icon>
-    </button>
+    <app-menu-button (click)="drawer.toggle()"></app-menu-button>
   </header>
 
   <div class="sidenav-content">
