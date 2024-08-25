@@ -24,8 +24,8 @@ export class TableComponent implements OnInit, AfterViewInit, OnChanges {
   pageSize: number = 20;
   currentPage: number = 0;
 
-  statusOptions: string[] = [];
-  speciesOptions: string[] = [];
+  statusOptions: string[] = ['Mostrar todos'];
+  speciesOptions: string[] = ['Mostrar todos'];
   selectedStatus: string | null = null;
   selectedSpecies: string | null = null;
 
@@ -57,12 +57,12 @@ export class TableComponent implements OnInit, AfterViewInit, OnChanges {
   }
 
   onStatusChange(status: string) {
-    this.selectedStatus = status;
+    this.selectedStatus = status === 'Mostrar todos' ? null : status;
     this.updateFilteredData();
   }
 
   onSpeciesChange(species: string) {
-    this.selectedSpecies = species;
+    this.selectedSpecies = species === 'Mostrar todos' ? null : species;
     this.updateFilteredData();
   }
 
@@ -91,8 +91,8 @@ export class TableComponent implements OnInit, AfterViewInit, OnChanges {
       if (item.species) speciesSet.add(item.species);
     });
 
-    this.statusOptions = Array.from(statusSet);
-    this.speciesOptions = Array.from(speciesSet);
+    this.statusOptions = ['Mostrar todos', ...Array.from(statusSet)];
+    this.speciesOptions = ['Mostrar todos', ...Array.from(speciesSet)];
   }
 
   getStatusClass(status: string): string {

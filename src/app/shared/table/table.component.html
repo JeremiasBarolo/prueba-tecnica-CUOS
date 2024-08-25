@@ -1,35 +1,28 @@
 <div class="container">
-  
-    
+  <div class="filter-container">
+    <mat-form-field appearance="fill" class="filter">
+      <mat-label>Buscar</mat-label>
+      <input matInput placeholder="Escriba cualquier nombre..." (input)="onSearchChange($event)">
+    </mat-form-field>
 
-    <div class="filter-container">
+    <mat-form-field class="filter">
+      <mat-label>Estado</mat-label>
+      <mat-select (selectionChange)="onStatusChange($event.value)">
+        <mat-option *ngFor="let status of statusOptions" [value]="status">
+          {{ status }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
 
-      <mat-form-field appearance="fill" class="filter">
-        <mat-label>Buscar</mat-label>
-        <input matInput placeholder="Escriba cualquier nombre..." (input)="onSearchChange($event)">
-      </mat-form-field>
-
-      
-      <mat-form-field class="filter">
-        <mat-label>Estado</mat-label>
-        <mat-select (selectionChange)="onStatusChange($event.value)">
-          <mat-option *ngFor="let status of statusOptions" [value]="status">
-            {{ status }}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-      
-      <mat-form-field class="filter">
-        <mat-label>Especie</mat-label>
-        <mat-select (selectionChange)="onSpeciesChange($event.value)">
-          <mat-option *ngFor="let species of speciesOptions" [value]="species">
-            {{ species }}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-
-      
-    </div>
+    <mat-form-field class="filter">
+      <mat-label>Especie</mat-label>
+      <mat-select (selectionChange)="onSpeciesChange($event.value)">
+        <mat-option *ngFor="let species of speciesOptions" [value]="species">
+          {{ species }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
 
   <div class="table-container">
     <table mat-table [dataSource]="dataSourceMat" matSort class="mat-elevation-z8">

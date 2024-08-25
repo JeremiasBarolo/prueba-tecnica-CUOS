@@ -13,8 +13,8 @@ export class CardsComponent implements OnChanges, OnInit {
   @Input() isLoading: boolean = true;
   @Input() response: boolean = true;
 
-  statusOptions: string[] = [];
-  speciesOptions: string[] = [];
+  statusOptions: string[] = ['Mostrar todos'];
+  speciesOptions: string[] = ['Mostrar todos'];
 
   totalItems: number = 0;
   pageSize: number = 20;
@@ -29,8 +29,8 @@ export class CardsComponent implements OnChanges, OnInit {
 
   ngOnInit() {    
     this.totalItems = this.dataSources.length;
-    this.updateFilteredData();
     this.updateOptions();
+    this.updateFilteredData();
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -55,13 +55,13 @@ export class CardsComponent implements OnChanges, OnInit {
     }
   }
 
-  onStatusChange(status: any) {
-    this.selectedStatus = status;
+  onStatusChange(status: string) {
+    this.selectedStatus = status === 'Mostrar todos' ? '' : status;
     this.updateFilteredData();
   }
 
-  onSpeciesChange(species: any) {
-    this.selectedSpecies = species;
+  onSpeciesChange(species: string) {
+    this.selectedSpecies = species === 'Mostrar todos' ? '' : species;
     this.updateFilteredData();
   }
 
@@ -96,8 +96,8 @@ export class CardsComponent implements OnChanges, OnInit {
       if (item.species) speciesSet.add(item.species);
     });
 
-    this.statusOptions = Array.from(statusSet);
-    this.speciesOptions = Array.from(speciesSet);
+    this.statusOptions = ['Mostrar todos', ...Array.from(statusSet)];
+    this.speciesOptions = ['Mostrar todos', ...Array.from(speciesSet)];
   }
 
   showData(data: any): void {
