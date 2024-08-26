@@ -1,6 +1,7 @@
 .container {
     height: 100vh;
     overflow-y: scroll;
+    margin-bottom: 3em;
 }
 
 @media (min-width: 600px) {
@@ -10,7 +11,7 @@
     }
 }
 
-/* Estilos para pantallas más pequeñas (móviles) */
+
 @media (max-width: 599px) {
     .container {
         margin-top: 5em;

@@ -44,7 +44,8 @@ background-color: #21242b;
 transition: 80ms;
 }
 
-mat-drawer{
+.mat-drawer {
+  height: 100%; 
   background-color: #272b33;
   border-color: #ffffff0c;
   color: white;
@@ -72,7 +73,7 @@ mat-drawer-container{
   height: auto; 
 }
 
-header{
+header {
   background-color: #272b33;
   border-style: ridge;
   border-width: 1px;
@@ -124,6 +125,12 @@ button::before {
 
 button:hover::before    {
   width: 250%;
+}
+
+.container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 
